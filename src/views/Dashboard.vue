@@ -13,9 +13,25 @@ import Navbar from '@/components/Navbar.vue';
     </div>
     <!-- Tabla de citas o información -->
     <div class="contenedor-bienvenida__tabla">
-      <h3>Estados de citas agendadas</h3>
-      <Table/>
-    </div>
+    <h3>Estados de citas agendadas</h3>
+    <Table>
+      <!-- Fila 1 -->
+      <tr>
+        <td>02/12/2024</td>
+        <td>04:00 PM</td>
+        <td>Neurología</td>
+        <td>Dr. Sánchez</td>
+        <!-- Slot de acción -->
+      </tr>
+      <!-- Fila 2 -->
+      <tr>
+        <td>03/12/2024</td>
+        <td>10:00 AM</td>
+        <td>Ginecología</td>
+        <td>Dr. López</td>
+      </tr>
+    </Table>
+  </div>
   </section>
 </template>
 
