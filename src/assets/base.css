@@ -4,15 +4,15 @@
   --vt-c-white-soft: #f0f8ff; /* Alice Blue */
   --vt-c-white-mute: #e6f2ff; /* Light Blue */
 
-  --vt-c-blue: #0074d9; /* Vivid Blue */
-  --vt-c-blue-soft: #85c1e9; /* Soft Blue */
+  --vt-c-blue: #0044cc; /* Vivid Blue Oscurecido */
+  --vt-c-blue-soft: #5a92b7; /* Soft Blue Oscurecido */  
   --vt-c-blue-mute: #d4e6f1; /* Mute Blue */
 
-  --vt-c-divider-light-1: #0044cc; /* Semi-transparent blue */
+  --vt-c-divider-light-1: rgba(0, 116, 217, 0.5); /* Semi-transparent blue */
   --vt-c-divider-light-2: rgba(0, 116, 217, 0.2); /* Lighter transparent blue */
 
   --vt-c-text-light-1: var(--vt-c-blue);
-  --vt-c-text-light-2: rgba(0, 116, 217, 0.6); /* Muted Blue Text */
+  --vt-c-text-light-2: var(--vt-c-blue-soft); /* Muted Blue Text */
 }
 
 /* semantic color variables for this project */
@@ -29,6 +29,7 @@
 
   --section-gap: 160px;
 }
+
 
 *,
 *::before,

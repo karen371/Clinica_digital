@@ -32,13 +32,13 @@ import login from '../components/FormularioLogin.vue'
     text-align: center
 
     h1
-      color: var(--vt-c-divider-light-1)
+      color: var(--color-heading)
       font-size: 2.5rem
       font-weight: bold
       margin-bottom: 10px
 
     p
-      color: #333
+      color: var(--color-text)
       font-size: 1rem
       margin: 0
 </style>
