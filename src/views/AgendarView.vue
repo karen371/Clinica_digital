@@ -21,11 +21,6 @@ import Navbar from '@/components/Navbar.vue';
 </template>
 
 <style lang="sass" scoped>
-/* Variables */
-$color-primario: #0074d9
-$color-secundario: #6c757d
-$color-fondo-tarjeta: #f8f9fa
-$color-titulo: #0044cc
 
 /* Estilos del contenedor principal */
 .contenedor
@@ -38,15 +33,15 @@ $color-titulo: #0044cc
 
 .contenedor__titulo--texto
   font-weight: bold
-  color: $color-titulo
+  color: var(--color-heading)
 
 .contenedor__descripcion
   font-size: 1.1rem
-  color: $color-secundario
+  color: var(--color-text)
 
 /* Estilos de la tarjeta */
 .contenedor__tarjeta
-  background-color: $color-fondo-tarjeta
+  background-color: var(-color-background-soft)
   border-radius: 12px
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
   padding: 2rem
