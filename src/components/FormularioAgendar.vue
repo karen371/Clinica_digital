@@ -37,7 +37,7 @@
         <div class="mb-3">
             <label for="fecha" class="form-label">Fecha de la cita</label>
             <input type="date" class="form-control" id="fecha" name="fecha">
-          </div>
+        </div>
           
           <div class="mb-3">
             <label for="hora" class="form-label">Hora de la cita</label>

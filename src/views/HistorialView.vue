@@ -22,22 +22,19 @@ export default {
     };
   },
   methods: {
-    // Función para abrir el modal y cargar los datos de la cita
     openModal(cita) {
       this.modalData = cita;
-      this.showModal = true;
       const modal = new bootstrap.Modal(document.getElementById('modifyModal'));
-      modal.show(); // Mostrar el modal usando el constructor de Bootstrap
+      modal.show(); // Mostrar el modal utilizando Bootstrap
     },
-    // Función para cerrar el modal
     closeModal() {
-      this.showModal = false;
       const modal = new bootstrap.Modal(document.getElementById('modifyModal'));
-      modal.hide(); // Cerrar el modal usando el constructor de Bootstrap
+      modal.hide(); // Cerrar el modal utilizando Bootstrap
     }
   }
 }
 </script>
+
 <template>
     <Navbar />
     <!-- Contenedor principal -->
@@ -97,6 +94,45 @@ export default {
           </template>
       </Table>
     </section>
+    <!-- Modal para modificar la cita -->
+  <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modifyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modifyModalLabel">Modificar Cita</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeModal"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha de la cita</label>
+                <input type="date" class="form-control" id="fecha" name="fecha">
+            </div>
+            <div class="mb-3">
+                <label for="hora" class="form-label">Hora de la cita</label>
+                <input type="time" class="form-control" id="hora" name="hora">
+              </div>
+            <div class="mb-3">
+              <label for="consulta" class="form-label">Consulta</label>
+              <input type="text" class="form-control" id="consulta" v-model="modalData.consulta" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="doctor" class="form-label">Doctor</label>
+                <select class="form-control" id="doctor" v-model="modalData.doctor">
+                  <option value="Dr. Sánchez">Dr. Sánchez</option>
+                  <option value="Dr. López">Dr. López</option>
+                  <option value="Dr. Martínez">Dr. Martínez</option>
+                </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" @click="closeModal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
   </template>
   
 
