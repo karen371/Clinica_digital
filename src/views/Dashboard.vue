@@ -1,6 +1,43 @@
-<script setup>
+<script>
 import Table from '../components/Table.vue'
 import Navbar from '@/components/Navbar.vue';
+import dasboard from '@/data/dashboard.json'
+export default {
+  data() {
+    return {
+      token: localStorage.getItem('authToken'),  // Obtenemos el token almacenado
+    };
+  },
+  components:{
+    Table,
+    Navbar
+  },
+  computed: {
+    // Accedemos a los datos del usuario y las citas desde Vuex
+    user() {
+      return this.$store.state.user;
+    },
+    appointments() {
+      return this.$store.state.appointments;
+    },
+    error() {
+      return this.$store.state.error;
+    },
+  },
+  mounted() {
+    // Intentamos obtener el token desde localStorage
+    const token = localStorage.getItem('authToken');
+
+    // Si no hay token, redirigir al login
+    if (!token) {
+      this.$router.push('/');
+    } else {
+      console.log('Token de autenticación:', token);
+      // Llamamos a la acción para cargar los datos cuando el componente se monta
+      this.$store.dispatch('fetchUserData');
+    }
+  },
+};
 </script>
 
 <template>
@@ -8,27 +45,21 @@ import Navbar from '@/components/Navbar.vue';
   <section class="contenedor-bienvenida my-5">
     <!-- Sección de bienvenida -->
     <div class="contenedor-bienvenida__cabecera mb-4 text-center">
-      <h2 class="contenedor-bienvenida__titulo">¡Bienvenido, Pedro Pérez!</h2>
-      <p class="contenedor-bienvenida__mensaje text-muted">Recuerde que su próxima cita es el bal bla</p>
+      <h2 class="contenedor-bienvenida__titulo">¡Bienvenido, {{ user.name }}!</h2>
+      <p class="contenedor-bienvenida__mensaje text-muted">Recuerde que su próxima cita</p>
     </div>
-    <!-- Tabla de citas o información -->
+    Tabla de citas o información
     <div class="contenedor-bienvenida__tabla">
     <h3>Estados de citas agendadas</h3>
     <Table>
-      <!-- Fila 1 -->
-      <tr>
-        <td>02/12/2024</td>
-        <td>04:00 PM</td>
-        <td>Neurología</td>
-        <td>Dr. Sánchez</td>
-        <!-- Slot de acción -->
-      </tr>
-      <!-- Fila 2 -->
-      <tr>
-        <td>03/12/2024</td>
-        <td>10:00 AM</td>
-        <td>Ginecología</td>
-        <td>Dr. López</td>
+      <tr v-for="appointment in appointments" :key="appointment.date + appointment.time">
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.time }}</td>
+        <td>{{ appointment.specialty }}</td>
+        <td>{{ appointment.doctor }}</td>
+        <td>
+          <span :class="appointment.statusClass">{{ appointment.status }}</span>
+        </td>
       </tr>
     </Table>
   </div>

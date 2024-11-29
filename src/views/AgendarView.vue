@@ -5,7 +5,6 @@ import Navbar from '@/components/Navbar.vue';
 
 <template>
   <Navbar />
-  
   <section class="contenedor formulario-agendar">
     <!-- Sección de título -->
     <div class="contenedor__titulo text-center mb-4">
