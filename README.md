@@ -1,3 +1,10 @@
+# Proyecto Clínica Digital
+
+Este es el repositorio de la **Clínica Digital**.
+
+Puedes ver el código fuente aquí: [Clínica Digital en GitHub](https://github.com/karen371/Clinica_digital)
+
+
 # clinica-digital
 
 This template should help get you started developing with Vue 3 in Vite.
