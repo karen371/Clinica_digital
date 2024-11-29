@@ -24,6 +24,11 @@ const router = createRouter({
       name: 'historial',
       component: () => import('../views/HistorialView.vue'),
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'notFound',
+      component: () => import('../views/NotFoundView.vue'),
+    }
   ],
 })
 

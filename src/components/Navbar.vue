@@ -9,13 +9,13 @@
           <!-- Aquí se aplica ms-auto para alinear los elementos a la derecha -->
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Inicio</a>
+              <RouterLink class="nav-link" aria-current="page" to="/dashboard">Inicio</RouterLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Citas</a>
+              <RouterLink class="nav-link" to="/agendar">Agendar Citas</RouterLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Perfil</a>
+              <RouterLink class="nav-link" to="/historial-citas">Historial de citas</RouterLink>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Cerrar Sesión</a>
