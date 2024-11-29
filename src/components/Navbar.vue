@@ -1,3 +1,19 @@
+<script>
+export default {
+  methods: {
+    logout() {
+      // Eliminar el token del localStorage
+      localStorage.removeItem('authToken'); // o sessionStorage.removeItem('authToken') si usas sessionStorage
+
+      // Opcionalmente, puedes eliminar otros datos relacionados con la sesión
+      localStorage.removeItem('userData'); // Por ejemplo, si guardas los datos del usuario
+
+      // Redirigir al login o a una página pública
+      this.$router.push('/');
+    }
+  }
+};
+</script>
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary contenedor__nav">
       <div class="container-fluid">
@@ -18,7 +34,7 @@
               <RouterLink class="nav-link" to="/historial-citas">Historial de citas</RouterLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Cerrar Sesión</a>
+              <button class="btn btn-danger" @click="logout">Cerrar Sesión</button>
             </li>
           </ul>
         </div>

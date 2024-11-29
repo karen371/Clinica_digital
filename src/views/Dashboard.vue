@@ -1,28 +1,23 @@
 <script>
-import Table from '../components/Table.vue'
+import Table from '../components/Table.vue';
 import Navbar from '@/components/Navbar.vue';
-import dasboard from '@/data/dashboard.json'
+import dashboard from '@/data/dashboard.json'; // Cargamos el archivo JSON
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
-      token: localStorage.getItem('authToken'),  // Obtenemos el token almacenado
+      token: localStorage.getItem('authToken'), // Obtenemos el token almacenado
+      user: {},
+      Appointments: [],
     };
   },
-  components:{
+  components: {
     Table,
-    Navbar
+    Navbar,
   },
   computed: {
-    // Accedemos a los datos del usuario y las citas desde Vuex
-    user() {
-      return this.$store.state.user;
-    },
-    appointments() {
-      return this.$store.state.appointments;
-    },
-    error() {
-      return this.$store.state.error;
-    },
+    ...mapState(['loading', 'error']),
   },
   mounted() {
     // Intentamos obtener el token desde localStorage
@@ -32,13 +27,26 @@ export default {
     if (!token) {
       this.$router.push('/');
     } else {
-      console.log('Token de autenticación:', token);
-      // Llamamos a la acción para cargar los datos cuando el componente se monta
-      this.$store.dispatch('fetchUserData');
+      // Simulamos el proceso de carga de los datos
+      this.loadUserData();
+      this.loadAppointments();
     }
+  },
+  methods: {
+    // Método para cargar los datos del usuario desde el JSON
+    loadUserData() {
+      this.user = dashboard.user; // Asignamos los datos del usuario
+      console.log('Datos del usuario cargados:', this.user);
+    },
+    // Método para cargar las citas (simulando una llamada a la API)
+    loadAppointments() {
+      this.Appointments = dashboard.appointments;
+      console.log('Citas cargadas:', this.Appointments);
+    },
   },
 };
 </script>
+
 
 <template>
   <Navbar/>
@@ -48,11 +56,10 @@ export default {
       <h2 class="contenedor-bienvenida__titulo">¡Bienvenido, {{ user.name }}!</h2>
       <p class="contenedor-bienvenida__mensaje text-muted">Recuerde que su próxima cita</p>
     </div>
-    Tabla de citas o información
     <div class="contenedor-bienvenida__tabla">
     <h3>Estados de citas agendadas</h3>
     <Table>
-      <tr v-for="appointment in appointments" :key="appointment.date + appointment.time">
+      <tr v-for="appointment in Appointments" :key="appointment.date + appointment.time">
         <td>{{ appointment.date }}</td>
         <td>{{ appointment.time }}</td>
         <td>{{ appointment.specialty }}</td>

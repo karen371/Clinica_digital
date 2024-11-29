@@ -29,6 +29,9 @@ export default {
       const modal = new bootstrap.Modal(document.getElementById('modifyModal'));
       modal.hide(); // Cerrar el modal utilizando Bootstrap
     },
+    updateModal() {
+      alert('Datos Modificados')
+    },
     deleteAppointment(index) {
       // Eliminar la cita seleccionada de la lista
       this.futureAppointments.splice(index, 1);
@@ -61,7 +64,7 @@ export default {
          <!-- Slot de acción (botones) -->
         <td>
             <div class="d-flex justify-content-center">
-                <button class="btn btn-warning btn-sm mx-1" @click="openModal(row)">Modificar</button>
+                <button class="btn btn-warning btn-sm mx-1" @click="openModal(appointment)">Modificar</button>
                 <button class="btn btn-danger btn-sm mx-1" @click="deleteAppointment(index)">Eliminar</button>
             </div>
         </td>
@@ -106,15 +109,29 @@ export default {
             <h5 class="modal-title" id="modifyModalLabel">Detalles de la Cita</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeModal"></button>
           </div>
+          <!-- Modal para modificar detalles de la cita -->
           <div class="modal-body">
-            <p><strong>Nombre:</strong> {{ modalData.name }}</p>
-            <p><strong>Fecha:</strong> {{ modalData.date }}</p>
-            <p><strong>Descripción:</strong> {{ modalData.description }}</p>
-            <!-- Puedes agregar más campos según lo que quieras mostrar -->
+            <div class="mb-3">
+              <label for="name" class="form-label"><strong>Nombre:</strong></label>
+              <input type="text" class="form-control" id="name" v-model="modalData.specialty" placeholder="Ingresa el nombre" />
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label"><strong>Nombre:</strong></label>
+              <input type="text" class="form-control" id="name" v-model="modalData.doctor" placeholder="Ingresa el nombre" />
+            </div>
+            <div class="mb-3">
+              <label for="date" class="form-label"><strong>Fecha:</strong></label>
+              <input type="date" class="form-control" id="date" v-model="modalData.date" />
+            </div>
+            <div class="mb-3">
+              <label for="hora" class="form-label">Hora de la cita</label>
+              <input type="text" class="form-control" id="time" v-model="modalData.time">
+            </div>
+            <!-- Puedes agregar más campos si lo necesitas -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal">Cerrar</button>
-            <button type="button" class="btn btn-primary" @click="closeModal">Modificar</button>
+            <button type="button" class="btn btn-primary" @click="updateModal">Modificar</button>
           </div>
         </div>
       </div>
